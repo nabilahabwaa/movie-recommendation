@@ -113,7 +113,7 @@ elif menu == "2. Karakteristik Sinopsis":
         with col2:
             fig, ax = plt.subplots()
             ax.hist(df['unique_words'], bins=30, color='tab:blue', edgecolor='black', alpha=0.7)
-            ax.set_title("Distribusi Kompleksitas (Kata Unik)")
+            ax.set_title("Distribusi Kompleksitas Sinopsis")
             st.pyplot(fig)
 
     else:
@@ -136,7 +136,7 @@ elif menu == "3. Efektivitas & Stabilitas":
     st.header("3. Efektivitas & Stabilitas (Adjustable Tolerance)")
 
     tolerance_values = [0.5, 1.0, 1.5, 2.0]
-    accuracies = [33.86, 58.77, 76.12, 86.38] 
+    accuracies = [35.11, 59.79, 77.01, 87.03] 
 
     user_tol = st.select_slider("Geser untuk mengubah Tolerance:", options=tolerance_values, value=1.0)
     current_acc = accuracies[tolerance_values.index(user_tol)]
@@ -146,11 +146,16 @@ elif menu == "3. Efektivitas & Stabilitas":
     for i, txt in enumerate(accuracies):
         ax6.annotate(f"{txt:.2f}%", (tolerance_values[i], accuracies[i] + 2), ha='center', fontweight='bold')
     ax6.scatter([user_tol], [current_acc], color='red', s=200, zorder=5, edgecolors='black')
-    ax6.set_title("Tren Akurasi Berdasarkan Tolerance")
+    ax6.set_title("Akurasi Sistem Rekomendasi SBERT pada Berbagai Tolerance Rating")
+    ax6.set_xlabel("Tolerance (Selisih Rating)")
+    ax6.set_ylabel("Akurasi (%)")
     st.pyplot(fig6)
 
     fig7, ax7 = plt.subplots(figsize=(6, 4))
     ax7.bar([f"Tolerance ≤{user_tol}"], [current_acc], color='tab:blue', width=0.4)
+    ax7.set_title("Akurasi Sistem Rekomendasi Berbasis SBERT")
+    ax6.set_xlabel("Top-5 Recommendation\n(Tolerance ≤ 1)")
+    ax7.set_ylabel("Akurasi (%)")
     ax7.set_ylim(0, 100)
     ax7.text(0, current_acc + 2, f"{current_acc:.2f}%", ha='center', fontweight='bold')
     st.pyplot(fig7)
