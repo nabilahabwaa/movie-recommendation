@@ -154,7 +154,7 @@ elif menu == "3. Efektivitas & Stabilitas":
     fig7, ax7 = plt.subplots(figsize=(6, 4))
     ax7.bar([f"Tolerance ≤{user_tol}"], [current_acc], color='tab:blue', width=0.4)
     ax7.set_title("Akurasi Sistem Rekomendasi Berbasis SBERT")
-    ax6.set_xlabel("Top-5 Recommendation\n(Tolerance ≤ 1)")
+    ax6.set_xlabel("Top-5 Recommendation (Tolerance ≤ 1)")
     ax7.set_ylabel("Akurasi (%)")
     ax7.set_ylim(0, 100)
     ax7.text(0, current_acc + 2, f"{current_acc:.2f}%", ha='center', fontweight='bold')
